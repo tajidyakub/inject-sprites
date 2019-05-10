@@ -25,7 +25,7 @@ var main = (function (exports) {
       let svg = DIV.removeChild(DIV.firstChild);
       svg["style"] = "display:none";
       svg["data-inject-url"] = absUrl;
-      return svg;
+      return svg.cloneNode(true);
   };
   const getAbsUrl = (path) => {
       let a = document[CREATE_ELEMENT]('a');
