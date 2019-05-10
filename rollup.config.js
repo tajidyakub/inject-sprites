@@ -9,9 +9,10 @@ export default {
   input: "src/inject-sprites.ts",
   output: [
     {
-      name: "main",
+      name: "sprites",
       format: "iife",
       file: "dist/index.js",
+      browser: true
     },
     {
       format: "esm",

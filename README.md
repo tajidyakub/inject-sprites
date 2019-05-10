@@ -10,7 +10,7 @@ Attach the script inside `<head>` and inject the sprites into the page with exec
 <head>
   <script src="https://cdn.jsdelivr.net/gh/tajidyakub/svg-sprites-inject@latest/dist/index.js"></script>
   <script>
-    injectSprites('https://cdn.jsdelivr.net/gh/tajidyakub/svg-icon-component@latest/dist/collection/assets/sprites/sprites.svg');
+    sprites.inject('https://cdn.jsdelivr.net/gh/tajidyakub/svg-icon-component@latest/dist/collection/assets/sprites/sprites.svg');
   </script>
 </head>
 ```
