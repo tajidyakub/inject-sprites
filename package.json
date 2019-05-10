@@ -1,0 +1,23 @@
+{
+  "name": "sprites-inject",
+  "version": "1.0.0",
+  "description": "Inject SVG Sprites into HTML Page",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tajid Yakub <tajid.yakub@gmail.com> (https://bitbucket.org/tajidyakub/)",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup-plugin-clean": "^1.0.0",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-progress": "^1.1.1",
+    "rollup-plugin-size": "0.0.1",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^1.9.3",
+    "typescript": "^3.4.5"
+  }
+}
