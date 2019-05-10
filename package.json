@@ -1,11 +1,15 @@
 {
-  "name": "sprites-inject",
+  "name": "inject-sprites",
   "version": "1.0.0",
   "description": "Inject SVG Sprites into HTML Page",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tajidyakub/inject-sprites.git"
+  },
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx rollup -c"
   },
   "keywords": [],
   "author": "Tajid Yakub <tajid.yakub@gmail.com> (https://bitbucket.org/tajidyakub/)",

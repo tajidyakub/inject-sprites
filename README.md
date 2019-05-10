@@ -1,4 +1,4 @@
-# SVG Sprites Inject
+# Inject SVG Sprites
 
 > Inject SVG Sprites into HTML Page.
 
