@@ -11,7 +11,7 @@ const fetchSprites = (path, callback, errorCallback) => {
         .then((response) => {
         return response.text()
             .then((svg) => {
-            return callback(svg);
+            return callback(svg.trim());
         })
             .catch((err) => {
             errorCallback(err);
@@ -20,10 +20,10 @@ const fetchSprites = (path, callback, errorCallback) => {
 };
 const buildSVGSprites = (svgStr, absUrl) => {
     DIV.innerHTML = svgStr;
-    let svg = DIV.removeChild(DIV.firstChild).cloneNode(true);
+    let svg = DIV.removeChild(DIV.firstChild);
     svg["style"] = "display:none";
     svg["data-inject-url"] = absUrl;
-    console.log(svg);
+    // console.log(svg);
     return svg;
 };
 const getAbsUrl = (path) => {
@@ -35,7 +35,7 @@ const injectSprites = async (path) => {
     let absUrl = await getAbsUrl(path);
     await fetchSprites(path, function (svg) {
         SVGSprites = buildSVGSprites(svg, absUrl);
-        console.log('Sprites =>', SVGSprites);
+        // console.log('Sprites =>', SVGSprites);
         return document.documentElement.appendChild(SVGSprites);
     }, (err) => {
         debugHandler(err);
