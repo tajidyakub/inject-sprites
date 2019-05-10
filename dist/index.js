@@ -14,33 +14,35 @@ var main = (function (exports) {
           .then((response) => {
           return response.text()
               .then((svg) => {
-              callback(svg);
+              return callback(svg);
           })
               .catch((err) => {
               errorCallback(err);
           });
       });
   };
-  const buildSVGSprites = (absUrl) => {
-      let svg = DIV.removeChild(DIV.firstChild);
+  const buildSVGSprites = (svgStr, absUrl) => {
+      DIV.innerHTML = svgStr;
+      let svg = DIV.removeChild(DIV.firstChild).cloneNode(true);
       svg["style"] = "display:none";
       svg["data-inject-url"] = absUrl;
-      return svg.cloneNode(true);
+      console.log(svg);
+      return svg;
   };
   const getAbsUrl = (path) => {
       let a = document[CREATE_ELEMENT]('a');
       a.href = path;
       return a.href;
   };
-  const injectSprites = (path) => {
-      let absUrl = getAbsUrl(path);
-      SVGSprites = fetchSprites(path, (svg) => {
-          DIV.innerHTML = svg;
-          return buildSVGSprites(absUrl);
+  const injectSprites = async (path) => {
+      let absUrl = await getAbsUrl(path);
+      await fetchSprites(path, function (svg) {
+          SVGSprites = buildSVGSprites(svg, absUrl);
+          console.log('Sprites =>', SVGSprites);
+          return document.documentElement.appendChild(SVGSprites);
       }, (err) => {
           debugHandler(err);
       });
-      document.documentElement.appendChild(SVGSprites);
   };
 
   exports.injectSprites = injectSprites;
