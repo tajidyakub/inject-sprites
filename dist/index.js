@@ -19,19 +19,11 @@ var sprites = (function (exports) {
       });
   };
   const buildSVGSprites = (svgStr, absUrl) => {
-<<<<<<< HEAD
-      DIV.innerHTML = svgStr;
-      let svg = DIV.removeChild(DIV.firstChild);
-      svg["style"] = "display:none";
-      svg["data-inject-url"] = absUrl;
-      // console.log(svg);
-=======
       let div = document.createElement('div');
       div.innerHTML = svgStr;
       let svg = div.removeChild(div.firstChild);
       svg["style"] = "display:none";
       svg["data-inject-url"] = absUrl;
->>>>>>> latest
       return svg;
   };
   const getAbsUrl = (path) => {
@@ -42,12 +34,7 @@ var sprites = (function (exports) {
   const inject = async (path) => {
       let absUrl = await getAbsUrl(path);
       await fetchSprites(path, function (svg) {
-<<<<<<< HEAD
-          SVGSprites = buildSVGSprites(svg, absUrl);
-          // console.log('Sprites =>', SVGSprites);
-=======
           let SVGSprites = buildSVGSprites(svg, absUrl);
->>>>>>> latest
           return document.documentElement.appendChild(SVGSprites);
       }, (err) => {
           debugHandler(err);
