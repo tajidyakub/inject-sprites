@@ -1,9 +1,6 @@
-var main = (function (exports) {
+var sprites = (function (exports) {
   'use strict';
 
-  const CREATE_ELEMENT = "createElement";
-  const DIV = document[CREATE_ELEMENT]('div');
-  let SVGSprites;
   const debugHandler = (ctx) => {
       if (ctx instanceof Error)
           console.error(ctx);
@@ -22,30 +19,42 @@ var main = (function (exports) {
       });
   };
   const buildSVGSprites = (svgStr, absUrl) => {
+<<<<<<< HEAD
       DIV.innerHTML = svgStr;
       let svg = DIV.removeChild(DIV.firstChild);
       svg["style"] = "display:none";
       svg["data-inject-url"] = absUrl;
       // console.log(svg);
+=======
+      let div = document.createElement('div');
+      div.innerHTML = svgStr;
+      let svg = div.removeChild(div.firstChild);
+      svg["style"] = "display:none";
+      svg["data-inject-url"] = absUrl;
+>>>>>>> latest
       return svg;
   };
   const getAbsUrl = (path) => {
-      let a = document[CREATE_ELEMENT]('a');
+      let a = document.createElement('a');
       a.href = path;
       return a.href;
   };
-  const injectSprites = async (path) => {
+  const inject = async (path) => {
       let absUrl = await getAbsUrl(path);
       await fetchSprites(path, function (svg) {
+<<<<<<< HEAD
           SVGSprites = buildSVGSprites(svg, absUrl);
           // console.log('Sprites =>', SVGSprites);
+=======
+          let SVGSprites = buildSVGSprites(svg, absUrl);
+>>>>>>> latest
           return document.documentElement.appendChild(SVGSprites);
       }, (err) => {
           debugHandler(err);
       });
   };
 
-  exports.injectSprites = injectSprites;
+  exports.inject = inject;
 
   return exports;
 
