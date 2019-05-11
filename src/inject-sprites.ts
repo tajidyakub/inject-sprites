@@ -1,10 +1,12 @@
+import {fetchSpritesCache} from "./inject-cache";
+
 const debugHandler = (ctx) => {
   if (ctx instanceof Error) console.error(ctx);
   console.log(ctx);
 }
 
 const fetchSprites = (path: string, callback: (svg: string) => void, errorCallback: (err: Error) => void ) => {
-  return fetch(path)
+  return fetchSpritesCache(path)
     .then((response) => {
       return response.text()
         .then((svg) => {

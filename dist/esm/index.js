@@ -1,10 +1,42 @@
+const CACHE_NAME = "svg-sprites-v1";
+const errorHandler = (err) => {
+    console.error(err);
+    return Error(err.message);
+};
+const addToCache = (response, path) => {
+    caches.open(CACHE_NAME).then((cache) => {
+        cache.put(path, response);
+    });
+};
+const fetchSvgSprites = (path) => {
+    return window.fetch(path, { mode: "no-cors" }).then((response) => {
+        addToCache(response.clone(), path);
+        return response;
+    }).catch((err) => errorHandler(err));
+};
+const getSvgFromCache = (path) => {
+    return caches.match(CACHE_NAME).then((response) => {
+        if ((response) === undefined) {
+            return fetchSvgSprites(path).then(response => {
+                return response;
+            });
+        }
+        else {
+            return response;
+        }
+    });
+};
+const fetchSpritesCache = (path) => {
+    return getSvgFromCache(path);
+};
+
 const debugHandler = (ctx) => {
     if (ctx instanceof Error)
         console.error(ctx);
     console.log(ctx);
 };
 const fetchSprites = (path, callback, errorCallback) => {
-    return fetch(path)
+    return fetchSpritesCache(path)
         .then((response) => {
         return response.text()
             .then((svg) => {
